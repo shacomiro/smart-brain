@@ -1,6 +1,6 @@
 facerecognitionbrain
 
-얼굴 인식 웹페이지입니다.
+얼굴 인식 웹페이지입니다. React 기반으로 제작되었으며, Clarifai API를 이용하여 이미지의 얼굴을 인식합니다.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
