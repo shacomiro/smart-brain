@@ -10,8 +10,13 @@
 
 ## 사용법
 
-![홈페이지](./readmeSrc/home.png)
+### 로그인 페이지
 
 ![로그인](./readmeSrc/signin.png)
+사용자의 Username과 password를 입력하고, Signin 버튼을 눌러 로그인할 수 있습니다.
+
+기존 회원이 아닐 경우, 우측 상단의 내비게이션 바에 있는 Register 링크를 통해 회원가입을 진행할 수 있습니다.
 
 ![회원가입](./readmeSrc/register.png)
+
+![홈페이지](./readmeSrc/home.png)
