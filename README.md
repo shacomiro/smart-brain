@@ -19,4 +19,8 @@
 Name, Email, Password를 입력하고 회원가입할 수 있습니다. 회원가입 성공 후에는 가입한 계정 정보로 즉시 로그인됩니다.
 
 ![홈페이지](./readmeSrc/home.png)
-Signin 혹은 Register 버튼을 클릭하여 로그인 또는 회원가입을 완료하면 FaceRecognitionFace App의 홈페이지가 표시됩니다. 사용자가 원하는 이미지의 URL을 입력하고, Detect 버튼을 눌러 사용자가 입력한 이미지 URL을 분석하고 결과를 출력합니다.
+Signin 혹은 Register 버튼을 클릭하여 로그인 또는 회원가입을 완료하면 FaceRecognitionFace App의 홈페이지가 표시됩니다. 하고, 
+
+1. 사용자가 원하는 이미지의 URL을 입력.
+2. Detect 버튼을 눌러 사용자가 입력한 이미지 URL을 전송.
+3. 전송된 이미지를 API로 분석하고 결과를 출력합니다.
