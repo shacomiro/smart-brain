@@ -16,7 +16,12 @@
 서비스를 이용하려면 사용자의 Name과 password를 입력하고, Signin 버튼을 눌러 로그인할 수 있습니다. 기존 회원이 아닐 경우, 우측 상단의 내비게이션 바에 있는 Register 링크를 통해 회원가입을 진행할 수 있습니다.
 
 ![회원가입](./readmeSrc/register.png)
-Name, Email, Password를 입력하고 회원가입할 수 있습니다. 회원가입 성공 후에는 가입한 계정 정보로 즉시 로그인됩니다.
+필요한 회원정보를 입력하면 회원가입이 가능합니다. 필요한 회원정보는 다음과 같습니다.
+1. Name
+2. Email
+3. Password
+
+회원가입 성공 후에는 가입한 계정 정보로 즉시 로그인됩니다.
 
 ![홈페이지](./readmeSrc/home.png)
 Signin 혹은 Register 버튼을 클릭하여 로그인 또는 회원가입을 완료하면 FaceRecognitionFace App의 홈페이지가 표시됩니다.
