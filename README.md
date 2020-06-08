@@ -2,15 +2,25 @@
 
 ## Face recongnition by Clarifai API.
 
-## 소개
+## 1. 소개
 
 얼굴 인식 웹페이지입니다. React 기반으로 제작되었으며, Clarifai API를 이용하여 이미지의 얼굴을 인식합니다.
 
 본 앱은 create-react-app을 통해 React 기반으로 제작되었습니다.
 
-## 사용법
+### 1.1 사용된 기술 스택
 
-### 로그인 페이지
+#### Front-End
+
+HTML5, CSS3, JavaScript, React.js(with NPM)
+
+#### Back-End
+
+개발 예정.
+
+## 2. 사용법
+
+### 2.1 로그인 페이지
 
 ![로그인](./readmeSrc/signin.png)
 로그인 이후에 이미지 얼굴 인식 서비스를 이용할 수 있습니다. 로그인은 다음 과정을 통해 진행할 수 있습니다. 
