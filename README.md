@@ -16,14 +16,15 @@ HTML5, CSS3, JavaScript, React.js(with NPM)
 
 #### Back-End
 
-개발 예정.
+개발 예정. (Node.js, Express.js 등)
 
 ## 2. 사용법
 
 ### 2.1 로그인 페이지
 
 ![로그인](./readmeSrc/signin.png)
-로그인 이후에 이미지 얼굴 인식 서비스를 이용할 수 있습니다. 로그인은 다음 과정을 통해 진행할 수 있습니다. 
+로그인 이후에 이미지 얼굴 인식 서비스를 이용할 수 있습니다. 로그인은 다음 과정을 통해 진행할 수 있습니다.
+
 1. 사용자의 Name과 Password 입력.
 2. Signin 버튼 클릭.
 
@@ -31,6 +32,7 @@ HTML5, CSS3, JavaScript, React.js(with NPM)
 
 ![회원가입](./readmeSrc/register.png)
 필요한 회원정보를 입력하면 회원가입이 가능합니다. 필요한 회원정보는 다음과 같습니다.
+
 1. Name
 2. Email
 3. Password
