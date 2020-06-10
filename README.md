@@ -16,7 +16,7 @@ HTML5, CSS3, JavaScript, React.js(with NPM)
 
 #### Back-End
 
-개발 예정. (Node.js, Express.js 등)
+개발 예정. (서버 : Node.js, Express.js , 데이터베이스 : 미정)
 
 ## 2. 사용법
 
