@@ -1,14 +1,14 @@
-import React from "react";
-import Clarifai from "clarifai";
-import Particles from "react-particles-js";
-import Navigation from "./component/Navigation/Navigation";
-import Logo from "./component/Logo/Logo";
-import Rank from "./component/Rank/Rank";
-import ImageLinkForm from "./component/ImageLinkForm/ImageLinkForm";
-import FaceRecognition from "./component/FaceRecognition/FaceRecognition";
-import Signin from "./component/Signin/Signin";
-import Register from "./component/Register/Register";
-import "./App.css";
+import React from 'react';
+import Clarifai from 'clarifai';
+import Particles from 'react-particles-js';
+import Navigation from './component/Navigation/Navigation';
+import Logo from './component/Logo/Logo';
+import Rank from './component/Rank/Rank';
+import ImageLinkForm from './component/ImageLinkForm/ImageLinkForm';
+import FaceRecognition from './component/FaceRecognition/FaceRecognition';
+import Signin from './component/Signin/Signin';
+import Register from './component/Register/Register';
+import './App.css';
 
 const particlesOptions = {
   particles: {
@@ -23,25 +23,43 @@ const particlesOptions = {
 };
 
 const app = new Clarifai.App({
-  apiKey: "aa4e641e96464328af75e13196a5c6bf",
+  apiKey: 'aa4e641e96464328af75e13196a5c6bf',
 });
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      input: "",
-      imageUrl: "",
+      input: '',
+      imageUrl: '',
       box: {},
-      route: "signin",
+      route: 'signin',
       isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: '',
+      },
     };
   }
 
+  loadUser = (data) => {
+    this.setState({
+      user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        entries: data.entries,
+        joined: data.joined,
+      },
+    });
+  };
+
   calculateFaceLocation = (data) => {
-    const clarifaiFace =
-      data.outputs[0].data.regions[0].region_info.bounding_box;
-    const image = document.querySelector("#inputImage");
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.querySelector('#inputImage');
     const width = Number(image.width);
     const height = Number(image.height);
 
@@ -67,6 +85,19 @@ class App extends React.Component {
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
       .then((response) => {
+        if (response) {
+          fetch('http://localhost:3001/image', {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: this.state.user.id,
+            }),
+          })
+            .then((response) => response.json())
+            .then((count) => {
+              this.setState(Object.assign(this.state.user, { entries: count }));
+            });
+        }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
       .catch((err) => {
@@ -90,9 +121,9 @@ class App extends React.Component {
   };
 
   onRouteChange = (route) => {
-    if (route == "signout") {
+    if (route === 'signout') {
       this.setState({ isSignedIn: false });
-    } else if (route === "home") {
+    } else if (route === 'home') {
       this.setState({ isSignedIn: true });
     }
     this.setState({ route: route });
@@ -104,24 +135,18 @@ class App extends React.Component {
     return (
       <div className="App">
         <Particles className="particles" params={particlesOptions} />
-        <Navigation
-          onRouteChange={this.onRouteChange}
-          isSignedIn={isSignedIn}
-        />
-        {this.state.route === "home" ? (
+        <Navigation onRouteChange={this.onRouteChange} isSignedIn={isSignedIn} />
+        {this.state.route === 'home' ? (
           <div>
             <Logo />
-            <Rank />
-            <ImageLinkForm
-              onInputChange={this.onInputChange}
-              onButtonSubmit={this.onButtonSubmit}
-            />
+            <Rank name={this.state.user.name} entries={this.state.user.entries} />
+            <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
             <FaceRecognition imageUrl={imageUrl} box={box} />
           </div>
-        ) : route === "signin" ? (
-          <Signin onRouteChange={this.onRouteChange} />
+        ) : route === 'signin' ? (
+          <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         ) : (
-          <Register onRouteChange={this.onRouteChange} />
+          <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         )}
       </div>
     );
