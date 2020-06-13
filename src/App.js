@@ -95,6 +95,7 @@ class App extends React.Component {
           })
             .then((response) => response.json())
             .then((count) => {
+              // user에서 다른 구성요소는 그대로 두고, entries만 변경하기 위해 Object.assign을 사용
               this.setState(Object.assign(this.state.user, { entries: count }));
             });
         }
@@ -146,8 +147,8 @@ class App extends React.Component {
         ) : route === 'signin' ? (
           <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         ) : (
-          <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
-        )}
+              <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+            )}
       </div>
     );
   }
