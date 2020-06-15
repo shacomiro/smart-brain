@@ -26,23 +26,25 @@ const app = new Clarifai.App({
   apiKey: 'aa4e641e96464328af75e13196a5c6bf',
 });
 
+const initialState = {
+  input: '',
+  imageUrl: '',
+  box: {},
+  route: 'signin',
+  isSignedIn: false,
+  user: {
+    id: '',
+    name: '',
+    email: '',
+    entries: 0,
+    joined: '',
+  },
+};
+
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      input: '',
-      imageUrl: '',
-      box: {},
-      route: 'signin',
-      isSignedIn: false,
-      user: {
-        id: '',
-        name: '',
-        email: '',
-        entries: 0,
-        joined: '',
-      },
-    };
+    this.state = initialState;
   }
 
   loadUser = (data) => {
@@ -97,7 +99,8 @@ class App extends React.Component {
             .then((count) => {
               // user에서 다른 구성요소는 그대로 두고, entries만 변경하기 위해 Object.assign을 사용
               this.setState(Object.assign(this.state.user, { entries: count }));
-            });
+            })
+            .catch(console.log);
         }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
@@ -123,7 +126,7 @@ class App extends React.Component {
 
   onRouteChange = (route) => {
     if (route === 'signout') {
-      this.setState({ isSignedIn: false });
+      this.setState(initialState);
     } else if (route === 'home') {
       this.setState({ isSignedIn: true });
     }
@@ -147,8 +150,8 @@ class App extends React.Component {
         ) : route === 'signin' ? (
           <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
         ) : (
-              <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
-            )}
+          <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+        )}
       </div>
     );
   }
