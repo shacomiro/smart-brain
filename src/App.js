@@ -1,5 +1,4 @@
 import React from 'react';
-import Clarifai from 'clarifai';
 import Particles from 'react-particles-js';
 import Navigation from './component/Navigation/Navigation';
 import Logo from './component/Logo/Logo';
@@ -21,10 +20,6 @@ const particlesOptions = {
     },
   },
 };
-
-const app = new Clarifai.App({
-  apiKey: 'aa4e641e96464328af75e13196a5c6bf',
-});
 
 const initialState = {
   input: '',
@@ -84,8 +79,14 @@ class App extends React.Component {
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
 
-    app.models
-      .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+    fetch('http://localhost:3001/imageurl', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        input: this.state.input,
+      }),
+    })
+      .then((response) => response.json())
       .then((response) => {
         if (response) {
           fetch('http://localhost:3001/image', {
