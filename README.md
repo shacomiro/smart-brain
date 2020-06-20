@@ -1,4 +1,4 @@
-# facerecognitionbrain
+# Smart-brain
 
 ## Face recongnition by Clarifai API.
 
@@ -16,7 +16,11 @@ HTML5, CSS3, JavaScript, React.js(with NPM)
 
 #### Back-End
 
-개발 예정. (서버 : Node.js, Express.js , 데이터베이스 : PostgreSQL)
+Node.js, Express.js
+
+#### Database
+
+postgreSQL
 
 ## 2. 사용법
 
